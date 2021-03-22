@@ -53,6 +53,7 @@
   <a href="<?php echo $this->getUrl()->getUrl('grid','Admin_shipping',['id'=>null],true)?>">Shipping</a>
   <a href="<?php echo $this->getUrl()->getUrl('grid','Admin_payment',['id'=>null],true)?>">Payment</a>
   <a href="<?php echo $this->getUrl()->getUrl('grid','Admin_admin',['id'=>null],true)?>">Admin</a>
+  <a href="<?php echo $this->getUrl()->getUrl('grid','Admin_Brand',['id'=>null],true)?>">Brand</a>
   <a href="<?php echo $this->getUrl()->getUrl('grid','Admin_EntityAttribute',['id'=>null],true)?>">EntityAttribute</a>
   <a href="<?php echo $this->getUrl()->getUrl('grid','Admin_CMSPages',['id'=>null],true)?>">CMS Pages</a>
 

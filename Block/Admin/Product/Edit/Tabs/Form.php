@@ -8,6 +8,11 @@ class Form extends \Block\Core\Edit
         parent::__construct();
         $this->setTemplate('./View/Admin/product/edit/tabs/form.php');
     }
+    public function getBrand()
+    {
+        $brands=\Mage::getModel('Model\Brand')->fetchAll();
+        return $brands;
+    }
 
 }
 

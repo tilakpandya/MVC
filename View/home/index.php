@@ -1,33 +1,30 @@
-<table border=2 width="100%" >
-    <tbody>
-        <tr>
-            <td height=400px width=100px>
-                content
-            </td>
+  
+  <!-- menu -->
+  <?php  echo $this->createBlock('Block\Customer\Layout\HomePage\CategoryPanel')->toHtml();?>
+ 
 
-            <td height=400px width=100px>
-                content
-            </td>
-        </tr>
-        <tr>
-            <td height=400px  colspan=2>
-            Shop by department
-            </td>
-        </tr>
-        <tr>
-            <td height=400px  colspan=2>
-            Most Selled Products
-            </td>
-        </tr>
-        <tr>
-            <td height=400px  colspan=2>
-            New Arrivals
-            </td>
-        </tr>
-        <tr>
-            <td height=400px  colspan=2>
-            Messages From Us
-            </td>
-        </tr>
-    </tbody>
-</table>
+  <!-- Start slider -->
+  <?php  echo $this->createBlock('Block\Customer\Layout\HomePage\BannerPanel')->toHtml();?>
+
+  <!-- Featured Category section -->
+  <?php  echo $this->createBlock('Block\Customer\Layout\HomePage\FeaturedCategoryPanel')->toHtml();?>
+
+  <!-- Products section -->
+  <?php  echo $this->createBlock('Block\Customer\Layout\HomePage\ProductPanel')->toHtml();?>
+
+  <!-- Client Brand -->
+
+  <?php  echo $this->createBlock('Block\Customer\Layout\HomePage\BrandPanel')->toHtml();?>
+
+  <!-- Subscribe section -->
+  <section id="aa-subscribe">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="aa-subscribe-area">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+ 

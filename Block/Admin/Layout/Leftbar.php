@@ -1,5 +1,5 @@
 <?php
-namespace Block\Core\Layout;
+namespace Block\Admin\Layout;
 \Mage::getBlock('Block\core\Template');
 
 class Leftbar extends \Block\Core\Template
@@ -7,6 +7,6 @@ class Leftbar extends \Block\Core\Template
     public function __construct($controller) 
     {
         $this->setController($controller);
-        $this->setTemplate('./View/Core/Layout/Leftbar.php');
+        $this->setTemplate('./View/admin/Layout/Leftbar.php');
     }
 }

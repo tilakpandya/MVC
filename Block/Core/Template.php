@@ -45,11 +45,6 @@ class Template
          return $contents;
     }
 
-    public function toHtml1()
-    {
-        require_once $this->getTemplate();
-    }
-
     public function getChildren()
     {
         return $this->children;

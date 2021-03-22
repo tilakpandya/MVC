@@ -7,7 +7,7 @@ class Category extends \Model\Core\Table
     const STATUS_ENABLED = 1;
     const STATUS_DISABLED = 0;
     
-    public function __construct(Type $var = null) {
+    public function __construct() {
 
         parent::__construct();
         $this->setTableName('category');
@@ -44,8 +44,7 @@ class Category extends \Model\Core\Table
 
      public function updateChildrenPathIds($categorypathId,$parentId=Null)
      {
-        echo"<pre>";
-        print_r($categorypathId);
+        
         $categorypathId = $categorypathId."=";
         $query = "SELECT * FROM `category` where `pathId` Like '{$categorypathId}%' ORDER BY `pathId` ASC";
         $categories = \Mage::getModel('Model\Category')->fetchAll($query);
@@ -66,6 +65,7 @@ class Category extends \Model\Core\Table
      {   
         if (array_key_exists($this->getPrimaryKey(),$this->getData())) {
             $this->save();
+           
             $this->updatePathId();
             $this->updateChildrenPathIds($this->pathId);
         }else{

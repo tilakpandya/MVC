@@ -6,35 +6,36 @@ class Home extends \Controller\Core\Customer
 {
     public function indexAction()
     {
-        try {            
-
+      try {            
             $layout = $this->getLayout();
-            $grid = \Mage::getModel('Block\Home\Index');
-            /*echo "<pre>";
-            print_r($content);
-            die; */
+            $grid = \Mage::getBlock('Block\Home\Index');
+           
             $content = $layout->getChild('content');
+            /* echo "<pre>";
+            print_r($layout);
+            die; */
             $content->addChild($grid,'grid'); 
             
-             echo $layout->toHtml();  
+            echo $layout->toHtml();  
                   
        } catch (Exception $th) {
           echo $th->getMessage();
        }
     }
+
+    
     
     public function pageAction()
     {
         $pager = \Mage::getController('Controller\Core\Pager');
         $query = "SELECT * FROM Product";
         $productCount = \mage::getModel('Model\Product')->getAdapter()->fetchOne($query);
-        $pager->setTotalRecords(80);
+        $pager->setTotalRecords($productCount);
         $pager->setRecordsPerPage(10);
         $pager->setCurrentPage($_GET['p']);
         $pager->calculate();
         echo"<pre>";
         print_r($pager);
-    
     }
 }
 

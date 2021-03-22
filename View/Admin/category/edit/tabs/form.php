@@ -1,7 +1,7 @@
 <?php
    $category=$this->getTableRow(); 
    $options = $this->getCategoriesOptions();
-
+   $featured = $this->getFeatured();
 ?>
 <h1 style="color:gray">Category Form</h1>
 <hr>
@@ -32,10 +32,10 @@
                             </select>
                         </td>
                         <td>
-                        <select name="category[parentId]" class="form-control">
-                        <option value=" ">select</option>
+                            <select name="category[parentId]" class="form-control">
+                                <option value=" ">select</option>
                                 <?php
-                                foreach ($options as $key => $value) { ?>
+                                    foreach ($options as $key => $value) { ?>
                                 <option value="<?php print_r($key)?>"
                                 <?php if($key == $category->parentId){ echo "Selected";} ?>>
                                     <?php print_r($value)?>
@@ -47,9 +47,20 @@
                     </tr>
                     <tr>
                         <td>
-                            <input type="submit" name="submit" value="Save" class="btn btn-success btn-lg">
+                            <select name="category[featured]" class="form-control">
+                                <option value=" ">select Featured</option>
+                                <?php
+                                    foreach ($featured as $key => $value) { ?>
+                                <option value="<?php print_r($value)?>"
+                                <?php if($value == $category->featured){ echo "Selected";} ?>>
+                                    <?php print_r($value)?>
+                                   
+                                </option>
+                                <?php }?>
+                            </select>
                         </td>
                         <td>
+                            <input type="submit" name="submit" value="Save" class="btn btn-success btn-lg"> &nbsp; &nbsp;
                             <a href="<?php echo $this->getUrl()->getUrl('grid',NULL,['id'=>null],true);?>" name="cancel" class="btn btn-danger btn-lg">Cancel</a>
                         </td>
                     </tr>

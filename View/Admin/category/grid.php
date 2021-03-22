@@ -20,6 +20,7 @@ print_r($op); */
                     <th>ID</th>
                     <th>Name</th>
                     <th>Description</th>
+                    <th>Featured</th>
                     <th>Parent Id</td>
                     <th>Path Id</td>
                     <th>status</th>
@@ -37,6 +38,7 @@ print_r($op); */
                     <td><?php echo $value->id?></td>
                     <td><?php echo $this->getName($value);?></td>
                     <td><?php echo $value->description?></td>
+                    <td><?php echo $value->featured?></td>
                     <td><?php echo $value->parentId?></td>
                     <td><?php echo $value->pathId?></td>
                     <td><?php echo $value->status?></td>

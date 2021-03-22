@@ -151,6 +151,15 @@ class CMSPages extends \Controller\Core\Admin
         $this->redirect('grid','Admin_CMSPages',null,true);
     }
 
+    public function filterAction()
+    {
+        $filter = \Mage::getModel('Model\Admin\Filter');
+        $filterData = $this->getRequest()->getPost('filter');
+        $filter->setFilter($filterData);
+        $this->redirect('grid');
+
+    }
+
     
 }
 

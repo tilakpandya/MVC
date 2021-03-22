@@ -49,7 +49,6 @@ class Session{
 
    public function __set($key, $value)
    {
-      echo $value;
       $_SESSION[$this->getNameSpace()][$key] = $value;
       return $this;
    } 

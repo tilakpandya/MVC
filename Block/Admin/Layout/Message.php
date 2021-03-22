@@ -1,11 +1,11 @@
 <?php
-namespace Block\Core\Layout;
+namespace Block\Admin\Layout;
 \Mage::getBlock('Block\Core\Template');
 
 class Message extends \Block\Core\Template
 {
     public function __construct($controller) 
     {
-        $this->setTemplate('./View/Core/layout/message.php');
+        $this->setTemplate('./View/admin/layout/message.php');
     }
 }

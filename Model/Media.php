@@ -8,6 +8,7 @@ class Media extends \Model\Core\Table
     const STATUS_DISABLED = 0;
     
     private $image= NULL;
+    
     public function __construct(Type $var = null) {
 
         parent::__construct();

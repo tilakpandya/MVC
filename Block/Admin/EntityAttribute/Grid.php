@@ -1,8 +1,8 @@
 <?php
 namespace Block\Admin\EntityAttribute;
-\Mage::getBlock('Block\Core\Template');
+\Mage::getBlock('Block\Core\Grid');
 
-class Grid extends \Block\Core\Template
+class Grid extends \Block\Core\Grid
 {
    protected $attribute =[];
     public function __construct() {

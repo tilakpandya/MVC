@@ -13,7 +13,6 @@ class Media extends \Block\Admin\Product\Edit
     public function getMedia()
     {
         if (!$this->media) {
-            
           $this->setMedia(); 
         }
         return $this->media;

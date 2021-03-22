@@ -1,6 +1,9 @@
 <?php
 
 namespace Controller\Admin\Product;
+
+use Exception;
+
 \Mage::loadByClass("Controller\Core\Admin");
 
 class ProductCategory extends \Controller\Core\Admin
@@ -15,8 +18,9 @@ class ProductCategory extends \Controller\Core\Admin
        try {       
             
             $layout = $this->getLayout();
-            $prod_cat = \Mage::getModel('Model\productCategory');
-            $grid = \Mage::getBlock('Block\Admin\Product\Edit\Tabs\Category');
+
+            $grid = \Mage::getBlock('Block\Admin\Product\Edit\Tabs\ProductCategory');
+            
             $right = \Mage::getBlock('Block\Admin\Product\Edit\Tabs');
             
             $content = $layout->getChild('content');
@@ -24,15 +28,42 @@ class ProductCategory extends \Controller\Core\Admin
 
             $rightbar = $layout->getChild('rightbar');
             $rightbar->addChild($right,'edit');
-            print_r($prod_cat);
-            die;
-            $grid->setTableRow($prod_cat); 
+            
             echo $layout->toHtml();  
                   
        } catch (Exception $th) {
           echo $th->getMessage();
        }
        
+    }
+    
+    public function saveAction()
+    {
+        try {
+            $id = $this->getRequest()->getGet('id');
+            $productCategory = $this->getRequest()->getPost('category');   
+            echo"<pre>";
+            
+            foreach ($productCategory as $key) {
+               $pro_cate = \Mage::getModel('Model\ProductCategory');
+               $pro_cate->categoryId = $key;
+               $pro_cate->productId = $id;
+
+               if (array_key_exists($key,$productCategory)) {
+                    $pro_cate->categoryId = $key;
+               }
+                if ($pro_cate->save()) {
+                    $this->getMessage()->setSuccess('Record Set Successfully');
+                }else{
+                    $this->getMessage()->setFailure('Unable to Set Record');
+                }   
+               
+            } 
+           
+        } catch (Exception $th) {
+            echo $th->getMessage();
+        }
+        $this->redirect('grid');
     }
 
 }

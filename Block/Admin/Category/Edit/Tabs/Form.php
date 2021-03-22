@@ -47,6 +47,16 @@ class Form extends \Block\Core\Edit
 
         return $this->categoryOptions;
     }
+
+    
+    public function getFeatured()
+    {
+       return [
+           1=>"YES",
+           2=>"NO"
+       ];
+    }
+
 }
 
 ?>

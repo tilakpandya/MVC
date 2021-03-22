@@ -7,7 +7,7 @@ class CustomerAddress extends \Model\Core\Table
     const TYPE_SHIPPING = 1;
     const TYPE_BILLING = 0;
     
-    public function __construct(Type $var = null) {
+    public function __construct() {
 
         parent::__construct();
         $this->setTableName('customer_address');

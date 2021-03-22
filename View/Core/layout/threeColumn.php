@@ -25,7 +25,7 @@
         
     </tr>
     <tr>
-        <td colspan=3 height=100px style="background-color:#3F39EF;color:white"><?php $this->getChild('footer')->toHtml();?></td>
+        <td colspan=3 height=100px style="background-color:#3F39EF;color:white">Footer<?php// $this->getChild('footer')->toHtml();?></td>
     </tr>
 </tbody>
 </table>

@@ -4,8 +4,7 @@ namespace Block\Customer;
 
 class Layout extends \Block\Core\Layout
 {
-    public function __construct(Type $var = null) {
-        
+    public function __construct() {
         parent::__construct();
         $this->setTemplate('.\View\customer\layout.php');
     }

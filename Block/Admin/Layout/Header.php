@@ -1,10 +1,10 @@
 <?php
-namespace Block\Core\Layout;
+namespace Block\Admin\Layout;
 \Mage::getBlock('Block\core\Template');
 class Header extends \Block\Core\Template
 {
     public function __construct() 
     {
-        $this->setTemplate('./View/Core/layout/Header.php');
+        $this->setTemplate('./View/admin/layout/Header.php');
     }
 }

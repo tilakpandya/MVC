@@ -1,11 +1,10 @@
 <?php
-$customerAddress = $this->getCustomerAddress();
+$billingAddress = $this->getBilllingAddress()[0];
+$shippingAddress = $this->getShippingAddress()[0];
 /* echo"<pre>";
-print_r($customerAddress); */
-foreach ($customerAddress as $key => $address):
-    /* echo"<pre>";
-    print_r($address); */
-endforeach; 
+print_r($shippingAddress);
+print_r($billingAddress); */
+
 ?>
 <section>
     <div class="container">
@@ -16,27 +15,27 @@ endforeach;
                     <table class="table">
                         <tr>
                             <td>
-                                <input type="text" name="billing[address]" id="address" value="<?php //if($address->addressType=="Both" || $address->addressType=="Billing" ){echo $address->address;}?>"
+                                <input type="text" name="billing[address]" id="address" value="<?php echo $billingAddress->address; ?>"
                                     placeholder="Address" class="form-control">
                             </td>
                             <td>
-                                <input type=" text" name="billing[city]" id="lastname" value="<?php //if($address->addressType=="Both" || $address->addressType=="Billing" ){echo $address->city;}?>"
+                                <input type=" text" name="billing[city]" id="lastname" value="<?php echo $billingAddress->city; ?>"
                                     placeholder="City" class="form-control">
                             </td>
                         </tr>
                         <tr>
                             <td>
-                                <input type="text" name="billing[state]" id="state" value="<?php //if($address->addressType=="Both" || $address->addressType=="Billing" ){echo $address->state;}?>"
+                                <input type="text" name="billing[state]" id="state" value="<?php echo $billingAddress->state; ?>"
                                     placeholder="State" class="form-control">
                             </td>
                             <td>
-                                <input type="text" name="billing[zipcode]" id="zipcode" value="<?php //if($address->addressType=="Both" || $address->addressType=="Billing" ){echo $address->zipcode;}?>"
+                                <input type="text" name="billing[zipcode]" id="zipcode" value="<?php echo $billingAddress->zipcode; ?>"
                                     placeholder="Zipcode" class="form-control">
                             </td>
                         </tr>
                         <tr>
                             <td>
-                            <input type="text" name="billing[country]" id="country" value="<?php //if($address->addressType=="Both" || $address->addressType=="Billing" ){echo $address->country;}?>"
+                            <input type="text" name="billing[country]" id="country" value="<?php echo $billingAddress->country; ?>"
                                     placeholder="Country" class="form-control">
                             </td>
                             <td><td>
@@ -47,27 +46,27 @@ endforeach;
                     <table class="table">
                         <tr>
                             <td>
-                                <input type="text" name="shipping[address]" id="address" value="<?php //if($address->addressType=="Both" || $address->addressType=="Shippng" ){echo $address->address;}?>"
+                                <input type="text" name="shipping[address]" id="address" value="<?php echo $shippingAddress->address; ?>"
                                     placeholder="Address" class="form-control">
                             </td>
                             <td>
-                                <input type=" text" name="shipping[city]" id="lastname" value="<?php //if($address->addressType=="Both" || $address->addressType=="Shippng" ){echo $address->city;}?>"
+                                <input type=" text" name="shipping[city]" id="lastname" value="<?php echo $shippingAddress->city; ?>"
                                     placeholder="City" class="form-control">
                             </td>
                         </tr>
                         <tr>
                             <td>
-                                <input type="text" name="shipping[state]" id="state" value="<?php //if($address->addressType=="Both" || $address->addressType=="Shippng" ){echo $address->state;}?>"
+                                <input type="text" name="shipping[state]" id="state" value="<?php echo $shippingAddress->state; ?>"
                                     placeholder="State" class="form-control">
                             </td>
                             <td>
-                                <input type="text" name="shipping[zipcode]" id="zipcode" value="<?php //if($address->addressType=="Both" || $address->addressType=="Shippng" ){echo $address->city;}?>"
+                                <input type="text" name="shipping[zipcode]" id="zipcode" value="<?php echo $shippingAddress->zipcode; ?>"
                                     placeholder="Zipcode" class="form-control">
                             </td>
                         </tr>
                         <tr>
                             <td>
-                            <input type="text" name="shipping[country]" id="country" value="<?php //if($address->addressType=="Both" || $address->addressType=="Shippng" ){echo $address->country;}?>"
+                            <input type="text" name="shipping[country]" id="country" value="<?php echo $shippingAddress->country; ?>"
                                     placeholder="Country" class="form-control">
                             </td>
                             <td>

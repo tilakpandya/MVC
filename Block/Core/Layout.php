@@ -8,19 +8,15 @@ class Layout extends \Block\Core\Template
    protected $children=[];
    public function __construct()
    {
-       $this->setTemplate('./View/Core/layout/threeColumn.php');     
+       $this->setTemplate('./View/Core/layout/threeColumn.php');   
+       $this->prepareChildren();  
        //$this->setTemplate('./View/Core/layout/OneColumn.php');   
-       $this->prepareChildren(); 
     }
 
-    /* public function prepareChildren()
+    public function prepareChildren()
     {
-        $this->addChild(\Mage::getBlock('Block\Core\Layout\Content'),'content');
-        $this->addChild(\Mage::getBlock('Block\Core\Layout\Header'),'header');
-        $this->addChild(\Mage::getBlock('Block\Core\Layout\Footer'),'footer');
-        $this->addChild(\Mage::getBlock('Block\Core\Layout\Leftbar'),'leftbar');
-        $this->addChild(\Mage::getBlock('Block\Core\Layout\Rightbar'),'rightbar');
-    } */
+        return $this;
+    }
 
     /* public function getContent()
     {

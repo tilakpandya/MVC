@@ -4,7 +4,7 @@ namespace Block\Core\Layout;
 
 class Message extends \Block\Core\Template
 {
-    public function __construct($controller) 
+    public function __construct() 
     {
         $this->setTemplate('./View/Core/layout/message.php');
     }

@@ -28,8 +28,7 @@ class Grid extends \Block\Core\Template
             customer_address.address, customer_address.city, customer_address.state, 
             customer_address.zipcode, customer_address.country, customer_address.addressType 
             FROM `customer` LEFT JOIN `customer_address` ON `customer`.`id` = `customer_address`.`CustomerId` 
-            LEFT JOIN `customer_group` ON `customer`.`group_id` = `customer_group`.`id`
-            WHERE customer_address.addressType = 'Billing' OR customer_address.addressType = 'Both'";
+            LEFT JOIN `customer_group` ON `customer`.`group_id` = `customer_group`.`id`";
             
             $customers=$customers->fetchAll($query);     
         }

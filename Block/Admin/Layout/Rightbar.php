@@ -1,5 +1,5 @@
 <?php
-namespace Block\Core\Layout;
+namespace Block\Admin\Layout;
 \Mage::getBlock('Block\core\Template');
 
 class Rightbar extends \Block\Core\Template
@@ -7,6 +7,6 @@ class Rightbar extends \Block\Core\Template
     public function __construct($controller) 
     {
         $this->setController($controller);
-        $this->setTemplate('./View/Core/layout/Rightbar.php');
+        $this->setTemplate('./View/admin/layout/Rightbar.php');
     }
 }

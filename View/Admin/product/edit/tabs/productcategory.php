@@ -1,30 +1,39 @@
 <?php
-/* $product_category=$this->getTableRow();
-print_r($product_category) */
-//$category = $this->getCategory();
+$product_category=$this->getProductCategory();
+/* echo "<pre>";
+print_r($product_category);  */
+$categories = $this->getCategory();
 ?>
-<h1 style="color:gray">Product Category Form</h1><br>
-            <input type="submit" onclick="submitForm(this)" name="Update" value="UPDATE" class="btn btn-success">
-            </br></br>
-<table class="table">
-    <tbody>
-        <tr>
-            <th>Category Id</th>
-            <th>Name</th>
-            <th>Path</th>
-            <th>Check Boxes</th>
-            <th>Delete</td>
-        </tr>
-        <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>    
-    </tbody>
-</table>
-
+<div class="container">
+    <h1 style="color:gray">Product Category Form</h1><br>
+    <form action="<?php echo $this->getUrl()->getUrl('save');?>" method="POST">
+        <input type="submit" onclick="submitForm(this)" value="UPDATE" class="btn btn-success">
+        </br></br>
+            <table class="table">
+                <tbody>
+                    <tr>
+                        <th>Category Id</th>
+                        <th>Name</th>
+                        <th>Check Boxes</th>
+                    </tr>
+                    <?php if (!$categories):?>
+                        <tr colspan=5>
+                            <td>No Data Found....</td>
+                        </tr>
+                    <?php endif; ?>    
+                    <?php foreach($categories as $key=>$category):?>
+                    <tr>
+                        <td><?php echo $category->id;?></td>
+                        <td><?php echo $category->name;?></td>
+                        <td><input type='checkbox' class="form-control" name="category[<?php echo $category->id?>]" value="<?php echo $category->id?>"
+                                <?php //if($category->id == ){ echo 'checked';}?>>
+                        </td>
+                    </tr>   
+                    <?php endforeach; ?> 
+                </tbody>
+            </table>
+    </form>
+</div>
 <script>
 
     function submitForm(button) {

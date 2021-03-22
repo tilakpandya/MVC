@@ -156,19 +156,17 @@ class Product extends \Controller\Core\Admin
     {
         try {
 
-            $id = $this->getRequest()->getGet('id');
-            if (!$id) {
-                throw new Exception('Id Invalid');
-            }
-            $product = \Mage::getModel('Model\Product');
-            $productRow = $product->load($id)->getData()['id'];
-            if($product->delete($productRow)){
+                $id = $this->getRequest()->getGet('id');
+                if (!$id) {
+                    throw new Exception('Id Invalid');
+                }
+                $product = \Mage::getModel('Model\Product');
+                $productRow = $product->load($id)->getData()['id'];
+                if($product->delete($productRow)){
 
-            }else {
-                
+                }else {
                 
             }
-
             /* $grid = Mage::getBlock('Block_Admin_Product_Grid');
             $gridHtml= $grid->toHtml();
             
@@ -184,12 +182,21 @@ class Product extends \Controller\Core\Admin
             ];
             header("Content-type: application/json; charset=utf-8");
             echo json_encode($response); */
-
         } 
         catch (Exception $e) {
             $this->getMessage()->setFailure($e->getMessage());
         }
         $this->redirect('grid','Admin_Product_Product',null,true);
+    }
+
+    public function filterAction()
+    {
+        $filter = \Mage::getModel('Model\Admin\Filter');
+        $filterData = $this->getRequest()->getPost('filter');
+        $filter->setFilter($filterData);
+
+        $this->redirect('grid');
+
     }
 
 }

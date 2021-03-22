@@ -116,7 +116,7 @@ class Category extends \Controller\Core\Admin
             echo $e->getMessage();
            
         }  
-        $this->redirect('grid','Admin_Category',null,true);
+        $this->redirect('grid');
  
     }
 
@@ -193,6 +193,15 @@ class Category extends \Controller\Core\Admin
        }else{
            $category->createdat = date('Y-m-d H:i:s');   
        }
+    }
+
+    public function filterAction()
+    {
+        $filter = \Mage::getModel('Model\Admin\Filter');
+        $filterData = $this->getRequest()->getPost('filter');
+        $filter->setFilter($filterData);
+        $this->redirect('grid');
+
     }
     
 }

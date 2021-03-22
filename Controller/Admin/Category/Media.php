@@ -36,32 +36,31 @@ class Media extends \Controller\Core\Admin
     public function saveAction()
     {
         try {
-            
-            if ($this->getRequest()->getGet('tab') == 'media') {
+           
+                $media = \Mage::getModel('Model\CategoryMedia');
+                print_r($label = $this->getRequest()->getPost('label'));
+                print_r($icon = $this->getRequest()->getPost('icon'));
+                print_r($active = $this->getRequest()->getPost('active'));
+                print_r($base = $this->getRequest()->getPost('base'));
+                print_r($banner = $this->getRequest()->getPost('banner')); 
                 
-                $media = \Mage::getModel('Model\Media');
-                
-                $label = $this->getRequest()->getPost('label');
-                $small = $this->getRequest()->getPost('small');
-                $thumbnail = $this->getRequest()->getPost('thumbnail');
-                $base = $this->getRequest()->getPost('base');
-                $gallery = $this->getRequest()->getPost('gallery'); 
 
+               
                 foreach ($label as $key => $value) {
                     $media->load($key);
                     $media->label = $value;
-                   
-                    if ($key == $small) {
-                        $media->small = 1;
+                    $media->active = $active;
+                    if ($key == $icon) {
+                        $media->icon = 1;
                     }else {
-                        $media->small = 0;
+                        $media->icon = 0;
                     }
 
-                    if ($key == $thumbnail) {
-                        $media->thumbnail = 1;
+                    /* if ($key == $active) {
+                        $media->active = 1;
                     }else {
-                        $media->thumbnail = 0;
-                    }
+                        $media->active = 0;
+                    } */
 
                     if ($key == $base) {
                         $media->base = 1;
@@ -69,10 +68,10 @@ class Media extends \Controller\Core\Admin
                         $media->base = 0;
                     }
 
-                    if (array_key_exists($key,$gallery)) {
-                        $media->gallery = 1;
+                    if (array_key_exists($key,$banner)) {
+                        $media->banner = 1;
                     }else {
-                        $media->gallery = 0;
+                        $media->banner = 0;
                     }
                     
                     if($media->save()){
@@ -80,9 +79,9 @@ class Media extends \Controller\Core\Admin
                     }  
                 }
                
-            }
+            
             $this->redirect('grid');
-                 
+                  
         }
         catch (Exception $e) {
             echo $e->getMessage();
@@ -93,16 +92,14 @@ class Media extends \Controller\Core\Admin
     public function _imageUploadAction()
     {    
         try {
-                $image = \Mage::getModel('Model\Media');
+                $image = \Mage::getModel('Model\CategoryMedia');
                 $photo = $_FILES['image']['name'];
                 $tmpName= $_FILES['image']['tmp_name'];
                 $path = $image->getImagePath();
                 move_uploaded_file($tmpName,$path.$photo);
                 $image->image = $photo;
                 $image->categoryId= $this->getRequest()->getGet('id');
-                echo "<pre>";
-                print_r($image);
-                
+               
                 if($image->save()){
                     $this->getMessage()->setSuccess('Record Set Successfully');
                     
@@ -120,10 +117,9 @@ class Media extends \Controller\Core\Admin
     public function DeleteAction()
     {
         try {
-            $image = \Mage::getModel('Model\Media');
+            $image = \Mage::getModel('Model\CategoryMedia');
           
             $mediaData = $this->getRequest()->getPost('media');
-            
             foreach ($mediaData as $key => $value) {
                 foreach ($value as $id => $remove) {
                   
@@ -131,9 +127,7 @@ class Media extends \Controller\Core\Admin
                         $this->getMessage()->setSuccess('Record Deleted Successfully');
                     }
                 }
-            }
-            
-            
+            } 
         } catch (Exception $e) {
             $this->getMessage()->setFailure($e->getMessage());
         }

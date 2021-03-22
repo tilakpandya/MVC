@@ -40,7 +40,6 @@ class Media extends \Controller\Core\Admin
             if ($this->getRequest()->getGet('tab') == 'media') {
                 
                 $media = \Mage::getModel('Model\Media');
-                $media->categoryId = 0;
                 $label = $this->getRequest()->getPost('label');
                 $small = $this->getRequest()->getPost('small');
                 $thumbnail = $this->getRequest()->getPost('thumbnail');
