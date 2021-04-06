@@ -104,7 +104,6 @@ class Payment extends \Controller\Core\Admin
         $filterData = $this->getRequest()->getPost('filter');
         $filter->setFilter($filterData);
         $this->redirect('grid');
-
     }
 }
 

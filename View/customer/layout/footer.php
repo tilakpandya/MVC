@@ -11,7 +11,7 @@
                 <div class="aa-footer-widget">
                   <h3>Main Menu</h3>
                   <ul class="aa-footer-nav">
-                    <li><a href="#">Home</a></li>
+                    <li><a href="<?= $this->getUrl()->getUrl('index','Home');?>">Home</a></li>
                     <li><a href="#">Our Services</a></li>
                     <li><a href="#">Our Products</a></li>
                     <li><a href="#">About Us</a></li>
@@ -52,9 +52,9 @@
                   <div class="aa-footer-widget">
                     <h3>Contact Us</h3>
                     <address>
-                      <p> 25 Astor Pl, NY 10003, USA</p>
-                      <p><span class="fa fa-phone"></span>+1 212-982-4589</p>
-                      <p><span class="fa fa-envelope"></span>dailyshop@gmail.com</p>
+                      <p> 25 Astor Pl, NY 10003, INDIA</p>
+                      <p><span class="fa fa-phone"></span>+91 9839824589</p>
+                      <p><span class="fa fa-envelope"></span>questecome@gmail.com</p>
                     </address>
                     <div class="aa-footer-social">
                       <a href="#"><span class="fa fa-facebook"></span></a>

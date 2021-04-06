@@ -11,7 +11,8 @@ class BannerPanel extends \Block\Core\Template
 
     public function getBanner()
     {
-       $brands=\Mage::getModel('Model\CategoryMedia')->fetchAll();
+       $query = "SELECT * FROM `category_media` WHERE `banner` = '1'";
+       $brands=\Mage::getModel('Model\CategoryMedia')->fetchAll($query);
        return $brands;
    }
 

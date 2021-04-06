@@ -2,7 +2,7 @@
   <!-- menu -->
   <?php  echo $this->createBlock('Block\Customer\Layout\HomePage\CategoryPanel')->toHtml();?>
  
-
+  <?php  echo $this->createBlock('Block\Customer\Layout\Message')->toHtml();?>
   <!-- Start slider -->
   <?php  echo $this->createBlock('Block\Customer\Layout\HomePage\BannerPanel')->toHtml();?>
 

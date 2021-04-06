@@ -22,6 +22,7 @@ class Shipping extends \Model\Core\Table
         ]; 
     }
    
+    
 }
 
 ?>

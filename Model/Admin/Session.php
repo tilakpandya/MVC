@@ -4,11 +4,11 @@ namespace Model\Admin;
 
 class Session extends \Model\Core\Session
 {
-    protected $nameSpace = Null;
 
     public function __construct() {
         parent::__construct();
         $this->setNameSpace('admin');
+        $_SESSION[$this->getNameSpace()]['init']='';
     }
    
 }

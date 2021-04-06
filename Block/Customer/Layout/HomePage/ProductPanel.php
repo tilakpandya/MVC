@@ -9,11 +9,12 @@ class ProductPanel extends \Block\Core\Template
        $this->setTemplate('.\View\customer\layout\homepage\productpanel.php');
     }
 
-    public function getCategory()
+    public function getProducts()
     {
-      $query="SELECT * FROM `Category` WHERE `parentId` = '0'";
-      $brands=\Mage::getModel('Model\category')->fetchAll($query);
-      return $brands;
+      $query="SELECT * FROM `product` 
+      INNER JOIN `media` ON `product`.`id` = `media`.`id`";
+      return \Mage::getModel('Model\product')->fetchAll($query);
+      
     }
 
 }

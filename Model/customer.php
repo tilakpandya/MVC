@@ -7,7 +7,7 @@ class Customer extends \Model\Core\Table
     const STATUS_ENABLED = 1;
     const STATUS_DISABLED = 0;
     
-    public function __construct(Type $var = null) {
+    public function __construct() {
 
         parent::__construct();
         $this->setTableName('customer');
@@ -39,6 +39,21 @@ class Customer extends \Model\Core\Table
         } 
         return $rows;
     }
+
+    public function getBillingAddress()
+    {
+        $query="SELECT * FROM `customer_address` WHERE `addressType`='Billing' AND `customerId` = '{$this->id}'";
+        $address = \Mage::getModel('Model\CustomerAddress')->fetchRow($query);
+        return $address;
+    }
+
+    public function getShippingAddress()
+    {
+        $query="SELECT * FROM `customer_address` WHERE `addressType`='Shipping' AND `customerId` = '{$this->id}'";
+        $address = \Mage::getModel('Model\CustomerAddress')->fetchRow($query);
+        return $address;
+    }
+
 }
 
 ?>

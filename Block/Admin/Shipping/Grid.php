@@ -10,7 +10,6 @@ class Grid extends \Block\Core\Grid
        $id->getRequest()->getGet('id');
        echo $id; 
     }
-
     public function prepareCollection()
     {
         $collection = \Mage::getModel('Model\Shipping');
@@ -27,8 +26,8 @@ class Grid extends \Block\Core\Grid
                 }
             }
         }
-        
-        $collection=$collection->fetchAll(); 
+    
+        $collection=$collection->fetchAll($query); 
         $this->setCollection($collection);
         return $this;
     }

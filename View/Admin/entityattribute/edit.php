@@ -1,6 +1,7 @@
 <?php
 $attribute = $this->getAttribute();
 //print_r($attribute)
+$attribute->getOptions();
 ?>
 <section>
     <div class="container">

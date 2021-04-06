@@ -7,7 +7,7 @@ $medias=$this->getMedia();
         <hr/>
         <br>
 
-     <form method='POST' action="<?php echo $this->getUrl()->getUrl('save')?>">
+     <form method='POST' action="<?php echo $this->getUrl()->getUrl('save','Admin_Category_Media')?>">
           
             <input type="submit" onclick="submitForm(this)" name="Update" value="UPDATE" class="btn btn-success">
             <input type="submit" value="delete" name="Delete" onclick="deleteData(this)" class="btn btn-danger">
@@ -22,6 +22,11 @@ $medias=$this->getMedia();
                     <th>Active</th>
                     <th>Remove</th>
                 </tr>
+                <?php if(!$medias):?>
+                    <tr>
+                        <td colspan=7>No Data Found....</td>
+                    </tr>
+                <?php endif;?>
                 <?php 
                 
                foreach ($medias as $key => $media) {
@@ -60,7 +65,7 @@ $medias=$this->getMedia();
 
     function submitForm(button) {
         var form = $(button).closest('form');
-        $(form).attr('action','<?php echo $this->getUrl()->getUrl('save'); ?>');
+        $(form).attr('action','<?php echo $this->getUrl()->getUrl('save','Admin_Category_Media'); ?>');
         form.submit();
     }
 

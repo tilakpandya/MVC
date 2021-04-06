@@ -6,6 +6,6 @@ class Leftbar extends \Block\Core\Template
 {
     public function __construct($controller) 
     {
-        $this->setTemplate('./View/customer/Layout/Leftbar.php');
+        $this->setTemplate('./View/core/Layout/Leftbar.php');
     }
 }

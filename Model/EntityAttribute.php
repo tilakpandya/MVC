@@ -52,14 +52,10 @@ class EntityAttribute extends \Model\Core\Table
     }
 
     public function getOptions()
-    {
-        
-        $query = "SELECT * FROM `attribute_option` 
-        WHERE `attributeId` = '{$this->id}'
-        ORDER BY `sortOrder` ASC";
-        
-        $options = \Mage::getModel('Model\EntityAttribute')->fetchAll($query); 
-        return $options;
+    {  
+        return \Mage::getModel($this->backendModel)
+        ->setAttribute($this)
+        ->getOptions();  
     }
 }
 

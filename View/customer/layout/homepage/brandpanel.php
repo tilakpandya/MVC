@@ -9,7 +9,7 @@
             <ul class="aa-client-brand-slider">
 
                 <?php foreach ($brands as $key => $brand):?>
-                    <li><a href="#"><img src="Skin/Images/Brand/<?php echo $brand->image?>"  height=100px width=100px alt="<?php echo $brand->name?>"></a></li>
+                    <li><a href="<?= $this->getUrl()->getUrl('view','CategoryPage');?>"><img src="Skin/Images/Brand/<?php echo $brand->image?>"  height=100px width=100px alt="<?php echo $brand->name?>"></a></li>
                 <?php endforeach;?>    
             </ul>
           </div>

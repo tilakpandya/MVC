@@ -20,7 +20,7 @@ class Customer extends \Controller\Core\Admin
         
             echo $layout->toHtml();  
                   
-       } catch (Exception $th) {
+       } catch (\Exception $th) {
           echo $th->getMessage();
        }
        
@@ -41,7 +41,7 @@ class Customer extends \Controller\Core\Admin
             if ($id=$this->getRequest()->getGet('id')) {
                 $customer = $customer->load($id);
                 if (!$customer) {
-                   throw new Exception("Unable to receive Data");
+                   throw new \Exception("Unable to receive Data");
                    
                 }
             }
@@ -49,7 +49,7 @@ class Customer extends \Controller\Core\Admin
             $edit->setTableRow($customer); 
             echo $layout->toHtml(); 
              
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             echo $e->getMessage();
         }
                 
@@ -63,7 +63,7 @@ class Customer extends \Controller\Core\Admin
                 if ($id = (int) $this->getRequest()->getGet("id")){
                      $customer = $customer->load($id);  
                      if (!$customer) {
-                         throw new Exception("Record not found");     
+                         throw new \Exception("Record not found");     
                      } 
                      $customer->updatedat = date('Y-m-d H:i:s');
                 }else {

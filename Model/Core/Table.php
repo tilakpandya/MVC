@@ -4,6 +4,7 @@ class Table
 {
     protected $primaryKey = NULL;
     protected $tableName = null; 
+    protected $originalData = [];
     protected $data=[];
     protected $adapter = NULL;
     
@@ -37,12 +38,23 @@ class Table
        return $this; 
     } 
 
-    public function __get($key)
+    /* public function __get($key)
     {   
         if (!array_key_exists($key,$this->data)) {
            return null;
         }
       return $this->data[$key];    
+    }  */
+
+    public function __get($key)
+    {   
+        if (array_key_exists($key,$this->data)) {
+           return $this->data[$key];
+        }
+        if (array_key_exists($key,$this->originalData)) {
+            return $this->originalData[$key];
+        }
+      return null;    
     } 
 
     public function getAdapter()
@@ -73,10 +85,11 @@ class Table
         return $this;
     }
 
-    public function save()
+   /*  public function save()
     {
-    
+        $primaryKey =(int) $this->{$this->getPrimaryKey()};
         if(array_key_exists($this->getPrimaryKey(),$this->data)){
+           
             $keys=[];
             foreach ($this->getData() as $key => $value) {
                $keys[] = "`".$key."` = '".$value."'";
@@ -86,7 +99,7 @@ class Table
             $keys= implode(',',$keys); 
           
             $id = $this->getData()[$this->getPrimaryKey()];
-         
+            
             $query = "UPDATE `{$this->getTableName()}` SET {$keys}
             WHERE `{$this->getPrimaryKey()}`='{$id}'";
         
@@ -111,34 +124,33 @@ class Table
         return $this;
         
     }
-    
+     */
     public function delete($id=null)
     {
+        
         if ($id == null) {
            if (!array_key_exists($this->getPrimaryKey(),
-           $this->getData())) {
+           $this->getOriginalData())) {
              return false;
            }
-           $id = $this->getData()[$this->getPrimaryKey()];
         }
-       $query = "DELETE FROM `{$this->getTableName()}` WHERE `{$this->getPrimaryKey()}`='$id'"; 
-       return $this->getAdapter()->delete($query);
+       
+        $id = $this->getOriginalData()[$this->getPrimaryKey()];
+        $query = "DELETE FROM `{$this->getTableName()}` WHERE `{$this->getPrimaryKey()}`='$id'"; 
+        //die;
+        return $this->getAdapter()->delete($query);
     }
     
-    public function load($value)
+    public function load($value,$optional=null)
     {
        $value =(int) $value;
        $query = "SELECT * FROM `{$this->getTableName()}` WHERE `{$this->getPrimaryKey()}`='{$value}'";
-       return $this->fetchRow($query);
-    }
-
-    public function fetchRow($query)
-    {
-        $row = $this->getAdapter()->fetchRow($query);
+       $row = $this->getAdapter()->fetchRow($query);
        if (!$row) {
-          return false;
-       } 
-       $this->data= $row; 
+           return false;
+       }
+       $this->setOriginalData($row);
+       $this->resetData();
        return $this;
     }
 
@@ -156,33 +168,93 @@ class Table
        } 
        foreach ($rows as $key => &$value) {
             $row = new $this;
-            $value =  $row->setData($value);
+            $value =  $row->setOriginalData($value);
        }
 
        return $rows;
     }
 
-    public function fetchAll1($query=NULL)
+    public function fetchRow($query)
     {
-        if (!$query) {
-            $query = "SELECT * FROM `{$this->getTableName()}`"; 
-        }  
-       $rows = $this->getAdapter()->fetchAll($query);
-       if (!$rows) {
+        $row = $this->getAdapter()->fetchRow($query);
+       if (!$row) {
           return false;
        } 
-       foreach ($rows as $key => &$value) {
-            $row = new $this;
-            $value =  $row->setData($value);
-       }
-
-       $collectionClassName = get_class($this).'_Collection';
-       $collection = Mage::getModel($collectionClassName);
-       $collection->setData($rows);
-       unset($rows);
-       return $rows;
+       $this->setOriginalData($row); 
+       $this->resetData();
+       return $this;
     }
-    
+
+
+    public function getOriginalData()
+    {
+        if (!$this->originalData) {
+            $this->setOriginalData();
+        }
+        return $this->originalData;
+    }
+
+    public function setOriginalData($originalData)
+    {
+        $this->originalData = $originalData;
+
+        return $this;
+    }
+
+    public function save()
+    {
+        
+        if(array_key_exists($this->getPrimaryKey(),$this->data)){
+            unset($this->data[$this->getPrimaryKey()]);
+        }
+        
+        $id =(int) $this->{$this->getPrimaryKey()};
+        
+        if (!$this->data) {
+           return false;
+        } 
+       
+        if(array_key_exists($this->getPrimaryKey(),$this->originalData)){
+            
+            $keys=[];
+            foreach ($this->getData() as $key => $value) {
+               $keys[] = "`".$key."` = '".$value."'";
+            }
+            //$id = array_shift($keys);
+            
+            $keys= implode(',',$keys); 
+          
+            //$id = $this->getData()[$this->getPrimaryKey()];
+            
+            $query = "UPDATE `{$this->getTableName()}` SET {$keys} WHERE `{$this->getPrimaryKey()}`='{$id}'"; 
+            echo "<br>";
+            
+            $adapter = \Mage::getModel('Model\Core\Adapter');
+            $adapter->update($query);
+          
+        }else {
+           
+            $keys = array_keys($this->getData());
+            $values = array_values($this->getData());
+          
+            $keys= implode('`,`',$keys); 
+            $values = implode("','",$values); 
+           
+            $query = "INSERT INTO `{$this->getTableName()}`(`{$keys}`) VALUES ('{$values}')";
+            
+            $adapter = \Mage::getModel('Model\Core\Adapter');;
+            $id=$adapter->insert($query);
+        }
+        $this->load($id);
+        return $this;
+    }
+
+    public function resetData()
+    {
+        $this->data = [];
+        return $this;
+    }
+
 }
 
 ?>

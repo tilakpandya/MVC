@@ -13,7 +13,6 @@ class Form extends \Block\Core\Edit
         $brands=\Mage::getModel('Model\Brand')->fetchAll();
         return $brands;
     }
-
 }
 
 ?>

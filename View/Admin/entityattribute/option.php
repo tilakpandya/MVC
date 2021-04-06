@@ -8,7 +8,7 @@
     <hr>
     <form action="<?php echo $this->getUrl()->getUrl('update','Admin_EntityAttribute'); ?>" method="POST">
         <div class="form-group contentHtml">
-            <input type="submit" value="Update" name="update" class="btn btn-info btn-md">
+            <input type="submit" value="Update" class="btn btn-info btn-md">
             <input type="button" name="addOption"  value="Add Option" onclick="addRow()" class="btn btn-warning btn-md">
                 <br><br>
                 <table width=100 boarder=2 id="existingOption" class="table">
@@ -62,12 +62,6 @@
         existOptiontable.append(newOptiontable.children[0].children[0].cloneNode(true));
         NoDataFound.remove();
     }
-
-    /* function addRow() {
-        var objTr =$(button).closest('tr');
-        console.log(objTr);
-        objTr.add();
-    } */
 
     function removeOption(button) {
         var objTr =$(button).closest('tr');

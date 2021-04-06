@@ -42,7 +42,7 @@ class ProductCategory extends \Controller\Core\Admin
         try {
             $id = $this->getRequest()->getGet('id');
             $productCategory = $this->getRequest()->getPost('category');   
-            echo"<pre>";
+           
             
             foreach ($productCategory as $key) {
                $pro_cate = \Mage::getModel('Model\ProductCategory');

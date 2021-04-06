@@ -5,27 +5,24 @@
 <table border=0 width="100%" >
 <tbody>
     <tr>
-        <td colspan=2 height=100px style="background-color:#3F39EF;color:white"> <?php echo $this->getChild('header')->toHtml();?></td> 
+        <td> <?php echo $this->getChild('header')->toHtml();?></td> 
+    </tr>
+    <tr>
+        <td> <?php echo $this->getChild('leftbar')->toHtml();?></td> 
     </tr>
 
     <tr>
-        <td height=500px width=10px><?php echo $this->getChild('leftbar')->toHtml(); ?></td>
-        
-        <td>
-            
+        <td width="100%">
+            <br><br>
             <?php echo $this->createBlock('Block\Core\Layout\Message')->toHtml();?>
-            <br>
-            <?php echo $this->getChild('rightbar')->toHtml(); ?>
+            
             <?php echo $this->getChild('content')->toHtml(); ?>
         
-        </td>
-        <td width=100px>
-  
         </td>
         
     </tr>
     <tr>
-        <td colspan=2 height=100px style="background-color:#3F39EF;color:white"><?php $this->getChild('footer')->toHtml();?></td>
+        <td height=100px style="background-color:gray;color:white"><?php $this->getChild('footer')->toHtml();?></td>
     </tr>
 </tbody>
 </table>

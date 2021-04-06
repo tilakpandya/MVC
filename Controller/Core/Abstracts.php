@@ -12,7 +12,7 @@ class Abstracts
 
         $this->setRequest();
         $this->setLayout();
-        //$this->setMessage();
+        $this->setMessage();
     }
     public function getRequest()
     {

@@ -11,7 +11,7 @@ $columns = $this->getColumns();
         <!-- <a onclick="mage.setUrl('<?php #echo $this->getUrl()->getUrl('form','Admin_Product_Product',null,null)?>').resetParams().load()"><button type="button" class="btn btn-success">Add
                 Product</button></a> -->
             <?php foreach($buttons  as $key =>$action): ?>   
-                <a href="<?= $this->getMethodUrl($row,$action['method'])?>" class="btn btn-success"><?= $action['label']?></a>                  
+                <a href="<?= $this->getMethodUrl($row,$action['method'])?>" class="btn btn-lg btn-success"><span class="glyphicon glyphicon-plus"></span></a>                  
             <?php endforeach; ?>         
         </br>
         <br>
@@ -28,7 +28,7 @@ $columns = $this->getColumns();
                             <tr>
                                 <?php foreach($columns as $key =>$column): ?>
                                     <td><input type="text" name="filter[<?= $column['type']?>][<?= $column['field']?>]" class="form-control"
-                                         value="<?php //echo $this->getFilter()->getFilterValue($column['type'],$column['field'])?>">
+                                         value="<?php echo $this->getFilter()->getFilterValue($column['type'],$column['field'])?>">
                                         </td>
                                 <?php endforeach; ?>
                                 <td>
@@ -50,18 +50,21 @@ $columns = $this->getColumns();
                                 <td>
                                     <?php foreach($actions as $key =>$action): ?>
                                         <?php if($action['label'] == 'Edit'): ?>
-                                            <a href="<?= $this->getMethodUrl($row,$action['method'])?>" class="btn btn-info btn-md"><span class="glyphicon glyphicon-pencil"></span></a>
+                                            <a href="<?= $this->getMethodUrl($row,$action['method'])?>" class="btn btn-info btn-md"><span class="glyphicon glyphicon-pencil"></span></a><br><br>
                                         <?php endif; 
                                             if($action['label'] == 'Delete'):?>
-                                                <a href="<?= $this->getMethodUrl($row,$action['method'])?>" class="btn btn-danger btn-md"><span class="glyphicon glyphicon-trash"></span></a>
-                                        <?php endif; ?>    
+                                                <a href="<?= $this->getMethodUrl($row,$action['method'])?>" class="btn btn-danger btn-md"><span class="glyphicon glyphicon-trash"></span></a><br><br>
+                                        <?php endif;
+                                        if($action['label'] == 'addItemToCart'):?>
+                                                <a href="<?= $this->getMethodUrl($row,$action['method'])?>" class="btn btn-warning btn-md"><span class="glyphicon glyphicon-shopping-cart"></span></a>
+                                        <?php endif; ?>  
                                     <?php endforeach; ?> 
                                 </td>
                             </tr>
-
                             <?php
                             }
                             ?>
+                            
                         </table>
                     </div>
                 </div>   

@@ -111,16 +111,16 @@ class Brand extends \Controller\Core\Admin
 
             $id = $this->getRequest()->getGet('id');
             if (!$id) {
-                throw new Exception('Id Invalid');
+                throw new \Exception('Id Invalid');
             }            
-            $payment = \Mage::getModel('Model\Brand'); 
-            $paymentRow = $payment->load($id)->getData()['id'];
-            if ($payment->delete($paymentRow)) {
+            $brand = \Mage::getModel('Model\Brand'); 
+            $brandRow = $brand->load($id)->getData()['id'];
+            if ($brand->delete($brandRow)) {
                 $this->getMessage()->setSuccess('Record Deleted Successfully');
             }else{
                 $this->getMessage()->setFailure('Unable To Delete Record');
             }
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             $this->getMessage()->setFailure($e->getMessage());
         }
         $this->redirect('grid','Admin_Brand',null,true);

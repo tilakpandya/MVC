@@ -11,15 +11,15 @@
             <!-- single sidebar -->
             <?php  echo $this->createBlock('Block\Customer\Layout\CategoryPage\CategoryPanel')->toHtml();?>
             <!-- single sidebar -->
-            <?php  echo $this->createBlock('Block\Customer\Layout\CategoryPage\TagPanel')->toHtml();?>
+            <?php  echo $this->createBlock('Block\Customer\Layout\CategoryPage\BrandPanel')->toHtml();?>
             <!-- single sidebar -->
+            <?php  echo $this->createBlock('Block\Customer\Layout\CategoryPage\ProductTypePanel')->toHtml();?>
+            <!-- single sidebar -->
+            <?php  echo $this->createBlock('Block\Customer\Layout\CategoryPage\ProductMaterialPanel')->toHtml();?>
+            <!-- single sidebar -->            
             <?php  echo $this->createBlock('Block\Customer\Layout\CategoryPage\PriceRangPanel')->toHtml();?>
             <!-- single sidebar -->
             <?php  echo $this->createBlock('Block\Customer\Layout\CategoryPage\ColorPanel')->toHtml();?>
-            <!-- single sidebar -->
-            <?php  echo $this->createBlock('Block\Customer\Layout\CategoryPage\RecentViewPanel')->toHtml();?>
-            <!-- single sidebar -->
-            <?php  echo $this->createBlock('Block\Customer\Layout\CategoryPage\MostRatedProduct')->toHtml();?>
           </aside>
         </div>
        

@@ -34,31 +34,34 @@ class CustomerAddress extends \Controller\Core\Admin
 
                     $shipping = $this->getRequest()->getPost('shipping');
                     $billing = $this->getRequest()->getPost('billing');
-                   
+                    
                         if ($shipping) {
                             $query = "SELECT * FROM `customer_address` WHERE `customerId`='{$id}' AND `addressType`='Shipping'";
                             $customer = \Mage::getModel('Model\CustomerAddress')->fetchAll($query);
                             $customer=$customer[0];
-                            /* echo "<pre>";
-                            print_r($customer[0]); */
+                            if (!$customer) {
+                                $customer = \Mage::getModel('Model\CustomerAddress');
+                            }
+                            
                             
                             $customer->customerId = $id;
                             $customer->addresstype = 'Shipping';
                             $customer->setData($shipping);
-
+                            
                             if($customer->save()){
                                 $this->getMessage()->setSuccess('Record Set Successfully');
                             }else {
                                 $this->getMessage()->setFailure('Unable To Set Record');
-                            }  
+                            } 
+                             
                         }
                         if ($billing) {
                             $query = "SELECT * FROM `customer_address` WHERE `customerId`='{$id}' AND `addressType`='Billing'";
                             $customer = \Mage::getModel('Model\CustomerAddress')->fetchAll($query);
                             $customer=$customer[0];
-                            /* echo "<pre>";
-                            print_r($customer[0]);
-                            die; */
+                            if (!$customer) {
+                                $customer = \Mage::getModel('Model\CustomerAddress');
+                            }
                             $customer->customerId = $id;
                             $customer->addresstype = 'Billing';
                             $customer->setData($billing);
@@ -70,9 +73,9 @@ class CustomerAddress extends \Controller\Core\Admin
                             } 
                         }
                 
-            }
-         }catch (Exception $e) {
-            echo $e->getMessage();
+                }
+         }catch (\Exception $e) {
+            $this->getMessage()->setFailure('Unable To Set Record');
         }
         $this->redirect('grid','Admin_Customer_Customer',null,true);
     }
@@ -82,8 +85,9 @@ class CustomerAddress extends \Controller\Core\Admin
         try {
             $id = $this->getRequest()->getGet('id');
             if (!$id) {
-                throw new Exception('Id Invalid');
+                throw new \Exception('Id Invalid');
             }
+            $customer = \Mage::getModel('Model\CustomerAddress');
             $customerRow = $customer->load($id)->getData()['id'];
 
             if ($customer->delete($customerRow)) {
@@ -91,7 +95,7 @@ class CustomerAddress extends \Controller\Core\Admin
             }else{
                 $this->getMessage()->setFailure('Unable To Delete Record');
             }
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             $this->getMessage()->setFailure($e->getMessage());
         }
         $this->redirect('grid','Admin_Customer_customerAddress',null,true);  

@@ -9,6 +9,7 @@ class Session{
    {
       $this->start();
       $this->setNameSpace('core');
+      $_SESSION[$this->getNameSpace()]['init']='';
    }
 
    public function getNameSpace()
@@ -55,11 +56,18 @@ class Session{
 
    public function __get($key)
     {
-      if (!array_key_exists($key, $_SESSION[$this->getNameSpace()])) 
+     /*  if (!array_key_exists($key, $_SESSION[$this->getNameSpace()])) 
       {
          return NULL;
       }
-      return $_SESSION[$this->getNameSpace()][$key];
+      return $_SESSION[$this->getNameSpace()][$key]; */
+      if (!array_key_exists($this->getNameSpace(),$_SESSION)) {
+         return null;
+     }
+     if (!array_key_exists($key, $_SESSION[$this->getNameSpace()])) {
+         return null;
+     } 
+     return $_SESSION[$this->getNameSpace()][$key];
     }
 
    public function __unset($key)

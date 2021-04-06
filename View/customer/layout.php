@@ -8,6 +8,11 @@
         </td>
     </tr>
     <tr>
+        <td>
+            <?php echo $this->createBlock('Block\Customer\Layout\HomePage\CategoryPanel')->toHtml(); ?>
+        </td>
+    </tr>
+    <tr>
         <td width=100px>
             <?php echo $this->getChild('content')->toHtml(); ?>
         </td>

@@ -19,35 +19,31 @@ class Url
         return $this;
     } 
 
-    public function getUrl($actionName = NULL, $controllerName=NULL,
-    $params=NULL,$resetparam=false)
-    {
+    public function getUrl($method = NULL , $controller = NULL , $params = NULL , $clearParam = false)
+	{
+		$final = $_GET;
+		if($clearParam)
+		{
+			$final = [];
+		}
+		if ($method == NULL) {
+			$method = $_GET['a'];
+		}
+		if ($controller == NULL) {
+			$controller = $_GET['c'];
+		}
+		$final['a'] = $method;
+		$final['c'] = $controller;
 
-        $final = $this->getRequest()->getGet(); 
-       
-        if ($resetparam) {
-            $final = [];
-        }
-        if ($actionName == NULL ) {
-            $actionName = $_GET['a'];
-        }
-        if ($controllerName == NULL ) {
-            $controllerName = $_GET['c'];
-        }
-        
-        $final['c']=$controllerName;
-        $final['a']=$actionName;
-
-        if (is_array($params)) {
-            $final = array_merge($final,$params);
-        }  
-        $queryString = http_build_query($final); //c=product&a=grid
-        unset($final);
-        
-        return "http://localhost:8080/Questecome/index.php?{$queryString}";
-        //exit(0);
-    } 
-
+		if(is_array($params)){
+			$final = array_merge($final,$params);
+		}
+		$queryString = http_build_query($final);
+		unset($final);
+		$url = "http://localhost:8080/Questecome/index.php?{$queryString}";
+		return $url;
+	}
+    
     public function baseUrl($subUrl=NULL)
     {
         $url = "http://localhost:8080/Questecome/";

@@ -1,7 +1,7 @@
 <?php 
    $categories = $this->getFeaturedCategory();
-   /*  echo "<pre>";*/ 
-    //print_r($categories); 
+  /*  echo "<pre>";
+    print_r($categories);  */
 ?>
   <section id="aa-product">
     <div class="container">
@@ -10,6 +10,7 @@
           <div class="row">
             <div class="aa-product-area">
               <div class="aa-product-inner">
+                
                 <!-- start prduct navigation -->
                  <ul class="nav nav-tabs aa-products-tab">
                   <li><a href="#" data-toggle="tab">Featured Category</a></li>
@@ -23,9 +24,9 @@
                         <?php foreach($categories as $key=>$value):?>
                           <li>
                             <figure>
-                              <a class="aa-product-img" href="#"><img src="Skin\Customer\img\Images\Product\bedroom\bedroom bench\Farmhouse Reimagined Antique White Uph Bench\photo1.jpg" alt="polo shirt img"></a>
+                              <a class="aa-product-img" href="<?= $this->getUrl()->getUrl('view','CategoryPage');?>"><img src="Skin\Images\Category\<?= $value->image; ?>" alt="polo shirt img"></a>
                                 <figcaption>
-                                <h4 class="aa-product-title"><a href="#"><?php echo $value->name; ?></a></h4>
+                                <h4 class="aa-product-title"><a href="<?= $this->getUrl()->getUrl('view','CategoryPage');?>"><?= $value->name;?></a></h4>
                               </figcaption>
                             </figure>                        
                            

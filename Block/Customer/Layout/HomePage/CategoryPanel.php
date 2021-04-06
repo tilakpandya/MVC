@@ -16,5 +16,12 @@ class CategoryPanel extends \Block\Core\Template
       return $brands;
     }
 
+    public function getCategoryChild($id)
+    {
+      $query="SELECT * FROM `Category` WHERE `pathId` LIKE '$id=%'";
+      $brands=\Mage::getModel('Model\category')->fetchAll($query);
+      return $brands;
+    }
+
 }
 ?>

@@ -30,8 +30,10 @@ class ProductCategory extends \Block\Core\Edit
 
     public function setProductCategory($productCategory=null)
     {
+        $id = $this->getRequest()->getGet('id'); 
         if (!$productCategory) {
-            $productCategory = \Mage::getModel('Model\ProductCategory')->fetchAll();
+            $query = "SELECT * FROM `product_category` WHERE `productId`='{$id}'";
+            $productCategory = \Mage::getModel('Model\ProductCategory')->fetchAll($query);
         }
         $this->productCategory = $productCategory;
 

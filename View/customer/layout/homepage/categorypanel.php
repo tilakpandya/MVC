@@ -1,7 +1,7 @@
 <?php 
     $categories = $this->getCategory();
-   /*  echo "<pre>";*/ 
-    //print_r($categories); 
+    /* echo "<pre>";
+    print_r($this->getCategoryChild(2));  */
 ?>
 <section id="menu">
     <div class="container">
@@ -21,20 +21,15 @@
             <ul class="nav navbar-nav">
                 <?php foreach ($categories as $key => $category):?>
                         <li><a href="#"><?= $category->name ?><span class="caret"></span></a>
-                            <ul class="dropdown-menu">                
-                                <li><a href="#">Casual</a></li>
-                                <li><a href="#">Sports</a></li>
-                                <li><a href="#">Formal</a></li>
-                                <li><a href="#">And more.. <span class="caret"></span></a>
-                                    <ul class="dropdown-menu">
-                                    <li><a href="#">Sleep Wear</a></li>
-                                    <li><a href="#">Sandals</a></li>
-                                    </ul>
-                                </li>
+                          <?php if($this->getCategoryChild($category->id)):?>
+                            <ul class="dropdown-menu">  
+                              <?php foreach ($this->getCategoryChild($category->id) as $key => $value):?>           
+                                  <li><a href="<?= $this->getUrl()->getUrl('view','CategoryPage',['id'=>$value->id],true);?>"><?=$value->name?></a></li>
+                              <?php endforeach;?>  
                             </ul>
+                          <?php endif;?>      
                     </li>
                 <?php endforeach;?>    
-
             </ul>
           </div><!--/.nav-collapse -->
         </div>

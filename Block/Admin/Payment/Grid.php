@@ -27,8 +27,8 @@ class Grid extends \Block\Core\Grid
                 }
             }
         }
-        
-        $collection=$collection->fetchAll(); 
+    
+        $collection=$collection->fetchAll($query); 
         $this->setCollection($collection);
         return $this;
     }
@@ -40,6 +40,7 @@ class Grid extends \Block\Core\Grid
         }
         return $this->filter;
     }
+
     public function prepareCoulmns()
     {
         $this->addColumn('id',[

@@ -11,6 +11,17 @@
     <div class="form-group">
         <table class="table">
             <tr>
+               <!--  <td><inpute type='text' name="filter['number']['id']" class="form-control"  value="<?php //echo $this->getFilter()->getFilterValue('number','id')?>"></td>
+                <td><inpute type='text' name="filter['number']['id']" class="form-control"  value="<?php //echo $this->getFilter()->getFilterValue('number','id')?>"></td>
+                <td><inpute type='text' name="filter['number']['id']" class="form-control"  value="<?php //echo $this->getFilter()->getFilterValue('number','id')?>"></td>
+                <td><inpute type='text' name="filter['number']['id']" class="form-control"  value="<?php //echo $this->getFilter()->getFilterValue('number','id')?>"></td>
+                <td><inpute type='text' name="filter['number']['id']" class="form-control"  value="<?php //echo $this->getFilter()->getFilterValue('number','id')?>"></td>
+                <td><inpute type='text' name="filter['number']['id']" class="form-control"  value="<?php //echo $this->getFilter()->getFilterValue('number','id')?>"></td>
+                <td><inpute type='text' name="filter['number']['id']" class="form-control"  value="<?php //echo $this->getFilter()->getFilterValue('number','id')?>"></td>
+                <td><inpute type='text' name="filter['number']['id']" class="form-control"  value="<?php //echo $this->getFilter()->getFilterValue('number','id')?>"></td>
+                <td><inpute type='text' name="filter['number']['id']" class="form-control"  value="<?php //echo $this->getFilter()->getFilterValue('number','id')?>"></td> -->
+            </tr>
+            <tr>
                 <th>ID</th>
                 <th>Entity Id</th>
                 <th>Name</th>

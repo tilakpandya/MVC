@@ -108,7 +108,11 @@ class Product extends \Controller\Core\Admin
 
                 $ProductData = $this->getRequest()->getPost('product');
                 $product->setData($ProductData);
-                $product->save();
+                if($product->save()){
+                    $this->getMessage()->setSuccess('Record Set Successfully');
+                }else{
+                    $this->getMessage()->setFailure('Unable to Set Record');
+                }  
                 
                 /* $grid = Mage::getBlock('Block_Admin_Product_Grid');
                 $contentHtml=$grid->toHtml();

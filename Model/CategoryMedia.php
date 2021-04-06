@@ -4,8 +4,7 @@ namespace Model;
 
 class CategoryMedia extends \Model\Core\Table
 {
-    
-    
+   
     private $image= NULL;
     
     public function __construct() {
@@ -15,8 +14,6 @@ class CategoryMedia extends \Model\Core\Table
         $this->setPrimarykey('id');
     }   
     
-     
-
     public function getImage()
     {
         return $this->image;

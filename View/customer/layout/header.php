@@ -12,7 +12,7 @@
             
                 <!-- start cellphone -->
                 <div class="cellphone hidden-xs">
-                  <p><span class="fa fa-phone"></span>00-62-658-658</p>
+                  <p><span class="fa fa-phone"></span>+91 9839824589</p>
                 </div>
                 <!-- / cellphone -->
               </div>
@@ -21,7 +21,7 @@
                 <ul class="aa-head-top-nav-right">
                   <li><a href="account.html">My Account</a></li>
                   <li class="hidden-xs"><a href="wishlist.html">Wishlist</a></li>
-                  <li class="hidden-xs"><a href="cart.html">My Cart</a></li>
+                  <li class="hidden-xs"><a href="<?= $this->getUrl()->getUrl('view','CartPage');?>">My Cart</a></li>
                   <li class="hidden-xs"><a href="checkout.html">Checkout</a></li>
                   <li><a href="" data-toggle="modal" data-target="#login-modal">Login</a></li>
                 </ul>
@@ -42,7 +42,7 @@
               <!-- logo  -->
               <div class="aa-logo">
                 <!-- Text based logo -->
-                <a href="index.html">
+                <a href="<?= $this->getUrl()->getUrl('index','Home');?>">
                   <span class="fa fa-shopping-cart"></span>
                   <p>Queste<strong>Com</strong></p>
                 </a>
@@ -52,7 +52,7 @@
               <!-- / logo  -->
                <!-- cart box -->
               <div class="aa-cartbox">
-                <a class="aa-cart-link" href="#">
+                <a class="aa-cart-link" href="<?= $this->getUrl()->getUrl('view','CartPage');?>">
                   <span class="fa fa-shopping-basket"></span>
                   <span class="aa-cart-title">SHOPPING CART</span>
                 </a>

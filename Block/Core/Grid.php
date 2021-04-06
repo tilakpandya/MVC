@@ -37,7 +37,6 @@ class Grid extends \Block\Core\Template
         return $this;
     }
 
-
     public function getColumns()
     {
         return $this->columns;

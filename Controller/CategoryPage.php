@@ -11,9 +11,7 @@ class CategoryPage extends \Controller\Core\Customer
             $grid = \Mage::getBlock('Block\Home\CategoryPage');
            
             $content = $layout->getChild('content');
-            /* echo "<pre>";
-            print_r($layout);
-            die; */
+           
             $content->addChild($grid,'grid'); 
             
             echo $layout->toHtml();  

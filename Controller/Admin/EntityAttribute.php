@@ -49,18 +49,18 @@ class EntityAttribute extends \Controller\Core\Admin
     {
         try {
                echo "<pre>";
-               $customer = \Mage::getModel('Model\EntityAttribute');
+               $attribute = \Mage::getModel('Model\EntityAttribute');
                 if ($id = (int) $this->getRequest()->getGet("id")){
-                     $customer = $customer->load($id);  
-                     if (!$customer) {
+                     $attribute = $attribute->load($id);  
+                     if (!$attribute) {
                          throw new Exception("Record not found");     
                      } 
                 }
                 
-                $customerData = $this->getRequest()->getPost('attribute');
-                $customer->setData($customerData);
+                $attributeData = $this->getRequest()->getPost('attribute');
+                $attribute->setData($attributeData);
 
-                if( $customer->save()){
+                if($attribute->save()){
                     $this->getMessage()->setSuccess('Record Set Successfully');
                 }else {
                     $this->getMessage()->setFailure('Unable To Set Record');
@@ -74,19 +74,17 @@ class EntityAttribute extends \Controller\Core\Admin
     
     public function optionAction()
     {
-              
-        $attribute = \Mage::getModel('Model\EntityAttribute');
-        $id = $this->getRequest()->getGet('id');
-        $layout= $this->getLayout();
-        $attribute->load($id);   
+        $id = $this->getRequest()->getGet('id');      
+        $attribute = \Mage::getModel('Model\EntityAttribute')->load($id);  
         
-            $content = $layout->getChild('content');
-
-
-            $edit = \Mage::getBlock('Block\Admin\EntityAttribute\Option')->setAttribute($attribute);
-            $content->addChild($edit,'edit');
+        $layout= $this->getLayout(); 
+        
+        $edit = \Mage::getBlock('Block\Admin\EntityAttribute\Option')->setAttribute($attribute);
+        $content = $layout->getChild('content');
+        $content->addChild($edit,'edit');
+    
            
-            echo $layout->toHtml(); 
+        echo $layout->toHtml(); 
       
     }
 
@@ -117,7 +115,8 @@ class EntityAttribute extends \Controller\Core\Admin
         echo "<pre>";
         $groupData=$this->getRequest()->getPost();
         $id = $this->getRequest()->getGet('id');
-
+        /* print_r($groupData);
+        die; */
         foreach ($groupData['Exist'] as $optionId => $value) {
             $query = "SELECT * FROM `attribute_option` 
             WHERE `attributeId` = '{$id}'
@@ -141,10 +140,11 @@ class EntityAttribute extends \Controller\Core\Admin
             $name = $groupData['New']['Name'];
             $sortOrder = $groupData['New']['sortOrder'];
             $optionArray = [];
+            
             for ($i = 0; $i < count($name); $i++) {
                 $optionArray[$i] = ['name' => $name[$i], 'sortOrder' => $sortOrder[$i], 'attributeId' => $id];
             }
-            print_r($optionArray);
+           
             foreach ($optionArray as $column) {
 
                 $options = \Mage::getModel('Model\Attribute\Option');
@@ -173,8 +173,7 @@ class EntityAttribute extends \Controller\Core\Admin
             }
             $option = \Mage::getModel('Model\Attribute\Option');
             $optionRow = $option->load($optionId)->getData()['optionId'];
-            /* print_r($optionRow);
-            die(); */
+            
             if ($option->delete($attributeRow)) {
                 $this->getMessage()->setSuccess('Record Deleted Successfully');
             }else{
@@ -193,6 +192,17 @@ class EntityAttribute extends \Controller\Core\Admin
         $filter->setFilter($filterData);
         $this->redirect('grid');
 
+    }
+
+    public function testAction()
+    {
+        echo"<pre>";
+        $query = "SELECT * FROM `attribute` WHERE `entityTypeId` = 'product'";
+        $attributes = \Mage::getModel('Model\entityAttribute')->fetchAll($query);
+
+        foreach ($attributes as $key => $attribute) {
+           print_r($attribute->getOptions());
+        }
     }
 }
 ?>

@@ -1,7 +1,7 @@
 <?php
 $product_category=$this->getProductCategory();
-/* echo "<pre>";
-print_r($product_category);  */
+ echo "<pre>";
+print_r($product_category); 
 $categories = $this->getCategory();
 ?>
 <div class="container">
@@ -26,7 +26,7 @@ $categories = $this->getCategory();
                         <td><?php echo $category->id;?></td>
                         <td><?php echo $category->name;?></td>
                         <td><input type='checkbox' class="form-control" name="category[<?php echo $category->id?>]" value="<?php echo $category->id?>"
-                                <?php //if($category->id == ){ echo 'checked';}?>>
+                                <?php if($product_category->categoryId == $category->id){ echo 'checked';}?>>
                         </td>
                     </tr>   
                     <?php endforeach; ?> 

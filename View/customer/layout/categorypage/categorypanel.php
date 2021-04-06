@@ -1,12 +1,9 @@
-<?php
-    $categories = $this->getCategory();
-?>
 <div class="aa-sidebar-widget">
     <h3>Category</h3>
     <ul class="aa-catg-nav">
 
-    <?php foreach ($categories as $key => $category):?>
-        <li><a href="#"><?= $category->name?></a></li>
+    <?php foreach ($this->getCategory() as $key => $category):?>
+        <li><a href="<?= $this->getUrl()->getUrl('view','CategoryPage',['id'=>$category->id],true);?>"><?= $category->name?></a></li>
     <?php endforeach;?>  
               
     </ul>

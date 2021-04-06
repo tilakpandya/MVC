@@ -1,11 +1,12 @@
 <?php
 
+spl_autoload_register(__NAMESPACE__.'\Mage::loadByClass'); 
+
 class Mage
 {
     private $Registry=Null;
     public static function init()
     {
-        self::loadByClass("Controller\core\Front");
        \Controller\core\Front::init(); 
     }
 
@@ -20,7 +21,6 @@ class Mage
 
     public function getModel($className)
     {
-        self::loadByClass($className);
         $className = str_replace('\\',' ',$className);
         $className = ucwords($className);
         $className = str_replace(' ','\\',$className);
@@ -30,8 +30,6 @@ class Mage
 
     public function getController($className)
     {
-        self::loadByClass($className);
-
         $className = str_replace('\\',' ',$className);
         $className = ucwords($className);
         $className = str_replace(' ','\\',$className);
@@ -41,11 +39,9 @@ class Mage
     public  function getBlock($className,$ton=false,$controller=NULL)
     {
         if (!$ton) {
-            self::loadByClass($className);
             $className = str_replace('\\',' ',$className);
             $className = ucwords($className);
             $className = str_replace(' ','\\',$className);
-            //echo "<br>";
             return new $className($controller);
         }
         $value = self::getRegistry($className);
@@ -57,7 +53,6 @@ class Mage
         $className = ucwords($className);
         $className = str_replace(' ','\\',$className);
         $value = new $className($controller);
-        //echo "<br>";
         return $value;
     }
 

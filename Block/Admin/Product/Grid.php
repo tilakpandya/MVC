@@ -61,13 +61,7 @@ class Grid extends \Block\Core\Grid
             'label'=>'discount',
             'type'=>'number'
         ]);
-
-        $this->addColumn('brandId',[
-            'field' => 'brandId',
-            'label'=>'Brand Id',
-            'type'=>'number'
-        ]);
-
+        
         $this->addColumn('quantity',[
             'field' => 'quantity',
             'label'=>'quantity',
@@ -92,6 +86,12 @@ class Grid extends \Block\Core\Grid
         $this->addActions('delete',[
             'label'=>'Delete',
             'method'=>'getDeleteUrl',
+            'ajax' => false
+        ]);
+
+        $this->addActions('addItemToCart',[
+            'label'=>'addItemToCart',
+            'method'=>'addItemToCart',
             'ajax' => false
         ]);
     }
@@ -126,6 +126,10 @@ class Grid extends \Block\Core\Grid
        return $this->getUrl()->getUrl('form','Admin_Product_Product',null,true);
     }
 
+    public function addItemToCart($row)
+    {
+     return $this->getUrl()->getUrl('addItemToCart','Admin_Cart',['id'=>$row->id],true);
+    }
 
 }
 

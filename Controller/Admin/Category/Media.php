@@ -44,8 +44,6 @@ class Media extends \Controller\Core\Admin
                 print_r($base = $this->getRequest()->getPost('base'));
                 print_r($banner = $this->getRequest()->getPost('banner')); 
                 
-
-               
                 foreach ($label as $key => $value) {
                     $media->load($key);
                     $media->label = $value;
@@ -55,12 +53,6 @@ class Media extends \Controller\Core\Admin
                     }else {
                         $media->icon = 0;
                     }
-
-                    /* if ($key == $active) {
-                        $media->active = 1;
-                    }else {
-                        $media->active = 0;
-                    } */
 
                     if ($key == $base) {
                         $media->base = 1;
@@ -99,19 +91,19 @@ class Media extends \Controller\Core\Admin
                 move_uploaded_file($tmpName,$path.$photo);
                 $image->image = $photo;
                 $image->categoryId= $this->getRequest()->getGet('id');
-               
+                
                 if($image->save()){
                     $this->getMessage()->setSuccess('Record Set Successfully');
                     
                 }else {
                     $this->getMessage()->setFailure('Unable To Set Record');
-                }  
+                } 
             
             } catch (Exception $e) {
                 echo $e->getMessage();
             
             }   
-            $this->redirect('grid','Admin_Category_Media');
+           $this->redirect('grid','Admin_Category_Media');
     }
 
     public function DeleteAction()
