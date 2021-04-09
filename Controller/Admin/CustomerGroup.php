@@ -1,16 +1,10 @@
 <?php
 
 namespace Controller\Admin;
-\Mage::loadByClass("Controller\Core\Admin");
 
 class CustomerGroup extends \Controller\Core\Admin
 {
     
-    public function __construct() {
-       
-        parent::__construct();
-    }
-
     public function gridAction()    //print all data in asso array 
     {       
        try {       

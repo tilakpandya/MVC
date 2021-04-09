@@ -131,17 +131,9 @@ print_r($this->getCart());  */
                         
                       </tbody>
                       <tfoot>
-                        <tr>
-                          <th colspan="2">Subtotal</th>
-                          <td>₹<span name="amount[subtotal]"><?= $subtotal?></span></td>
-                        </tr>
-                         <tr>
-                          <th colspan="2">Tax</th>
-                          <td>₹500</td>
-                        </tr>
                          <tr>
                           <th colspan="2">Total</th>
-                          <td>₹<?= $subtotal + 500?></td>
+                          <td>₹<?= $subtotal?></td>
                         </tr>
                       </tfoot>
                     </table>
@@ -150,6 +142,7 @@ print_r($this->getCart());  */
                   <div class="aa-payment-method">
                     <?php foreach ($paymentMethod as $key => $payment):?>
                       <label for="<?= $payment->name?>"><input type="radio" id="<?= $payment->name?>" value="<?= $payment->id?>" name="paymentMethod" <?php if($payment->id == $this->getCart()->paymentMethodId){ echo "Checked";}?>> <?= $payment->name?></label>
+                      
                     <?php endforeach;?>
                     <br><br>
                     <img src="https://www.paypalobjects.com/webstatic/mktg/logo/AM_mc_vs_dc_ae.jpg" border="0" alt="PayPal Acceptance Mark">    
@@ -157,7 +150,7 @@ print_r($this->getCart());  */
                   <h4>Shipping Method</h4>
                   <div class="aa-payment-method">
                     <?php foreach ($shippingMethod as $key => $shipping):?>
-                      <label for="<?= $shipping->name?>"><input type="radio" id="<?= $shipping->name?>" value="<?= $payment->id?>" name="shippingMethod" <?php if($payment->id == $this->getCart()->shippingMethodId){ echo "Checked";}?>> <?= $shipping->name?> <strong>₹<?= $shipping->amount?></strong></label>
+                      <label for="<?= $shipping->name?>"><input type="radio" id="<?= $shipping->name?>" value="<?= $shipping->id?>" name="shippingMethod" <?php if($shipping->id == $this->getCart()->shippingMethodId){ echo "Checked";}?>> <?= $shipping->name?> <strong>₹<?= $shipping->amount?></strong></label>  
                     <?php endforeach;?>
                   </div>
                   </form> 

@@ -1,7 +1,6 @@
 <?php
 
 namespace Controller\Admin;
-\Mage::loadByClass("Controller\Core\Admin");
 
 class Dashboard extends \Controller\Core\Admin
 {

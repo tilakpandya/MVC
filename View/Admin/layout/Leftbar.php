@@ -23,14 +23,14 @@
                 <li><a href="<?php echo $this->getUrl()->getUrl('grid','Admin_Product_Product',['id'=>null,'tab'=>null],true)?>">Product</a></li>
                 <li><a href="<?php echo $this->getUrl()->getUrl('grid','Admin_Category_Category',['id'=>null],true)?>">Category</a></li>
                 <li><a href="<?php echo $this->getUrl()->getUrl('grid','Admin_Customer_Customer',['id'=>null],true)?>">Customer</a></li>
-                <li><a href="<?php echo $this->getUrl()->getUrl('grid','Admin_CustomerGroup',['id'=>null],true)?>">CustomerGroup</a></li>
+                <li><a href="<?php echo $this->getUrl()->getUrl('grid','Admin_CustomerGroup',['id'=>null],true)?>">Customer Group</a></li>
                 <li><a href="<?php echo $this->getUrl()->getUrl('grid','Admin_shipping',['id'=>null],true)?>">Shipping</a></li>
                 <li><a href="<?php echo $this->getUrl()->getUrl('grid','Admin_payment',['id'=>null],true)?>">Payment</a></li>
                 <li><a href="<?php echo $this->getUrl()->getUrl('grid','Admin_admin',['id'=>null],true)?>">Admin</a></li>
                 <li><a href="<?php echo $this->getUrl()->getUrl('grid','Admin_Brand',['id'=>null],true)?>">Brand</a></li>
-                <li><a href="<?php echo $this->getUrl()->getUrl('grid','Admin_EntityAttribute',['id'=>null],true)?>">EntityAttribute</a></li>
-                <li><a href="<?php echo $this->getUrl()->getUrl('grid','Admin_CMSPages',['id'=>null],true)?>">CMS</a></li>
-                <li><a href="<?php echo $this->getUrl()->getUrl('grid','Admin_Config',['id'=>null],true)?>">Configuration</a></li>
+                <li><a href="<?php echo $this->getUrl()->getUrl('grid','Admin_EntityAttribute',['id'=>null],true)?>">Entity Attribute</a></li>
+                <li><a href="<?php echo $this->getUrl()->getUrl('grid','Admin_CMSPages',['id'=>null],true)?>">CMS Page</a></li>
+                <!-- <li><a href="<?php //echo $this->getUrl()->getUrl('grid','Admin_Config',['id'=>null],true)?>">Configuration</a></li> -->
             </ul>
           </div><!--/.nav-collapse -->
         </div>

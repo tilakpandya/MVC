@@ -52,13 +52,13 @@ class Grid extends \Block\Core\Grid
 
         $this->addColumn('price',[
             'field' => 'price',
-            'label'=>'price',
+            'label'=>'price(₹)',
             'type'=>'number'
         ]);
 
         $this->addColumn('discount',[
             'field' => 'discount',
-            'label'=>'discount',
+            'label'=>'discount(₹)',
             'type'=>'number'
         ]);
         

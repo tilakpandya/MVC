@@ -50,11 +50,11 @@ $customer = $this->getCart()->getCustomer();
                       <tr>
                         <td><?php echo $attribute->cartItemId;?></td>
                         <td><?php echo $attribute->productId;?></td>
-                        <td><?php echo $attribute->price;?></td>
+                        <td>₹<?php echo $attribute->price;?></td>
                         <td><input type="number" name="quantity[<?= $attribute->cartItemId ?>]" value="<?php echo $attribute->quantity;?>"></td>
-                        <td><?php echo $attribute->quantity * $attribute->price;?></td>
-                        <td><?php echo $attribute->discount * $attribute->quantity;?></td>
-                        <td><?php echo ($attribute->quantity * $attribute->price - $attribute->discount * $attribute->quantity);?></td>
+                        <td>₹<?php echo $attribute->quantity * $attribute->price;?></td>
+                        <td>₹<?php echo $attribute->discount * $attribute->quantity;?></td>
+                        <td>₹<?php echo ($attribute->quantity * $attribute->price - $attribute->discount * $attribute->quantity);?></td>
                         <td>
                             <a href='<?php echo $this->getUrl()->getUrl("delete",NULL,['id'=> $attribute->cartItemId])?>'
                             class="btn btn-danger btn-md"><span class="glyphicon glyphicon-trash"></span> </a>

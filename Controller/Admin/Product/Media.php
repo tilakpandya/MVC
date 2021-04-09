@@ -38,7 +38,7 @@ class Media extends \Controller\Core\Admin
         try {
            
             if ($this->getRequest()->getGet('tab') == 'media') {
-                
+                echo "<pre>";
                 $media = \Mage::getModel('Model\Media');
                 $label = $this->getRequest()->getPost('label');
                 $small = $this->getRequest()->getPost('small');
@@ -80,11 +80,11 @@ class Media extends \Controller\Core\Admin
                     }else{
                         $this->getMessage()->setFailure('Unable to Set Record');
                     }  
-                    //print_r($media);
+                   
                 }
                
             }
-           
+            
             $this->redirect('grid','Admin_Product_Media');
                  
         }

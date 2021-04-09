@@ -139,7 +139,10 @@ class Cart extends \Model\Core\Table
 
     public function addItem($product,$quantity=1,$addMode=false)
     {
-        
+        if (!$this->customerId) {
+            return false;
+        }
+
         $query = "SELECT * FROM `cart_item` WHERE `cartId` = '{$this->cartId}' AND `productId` = '{$product->id}'";
         $cartItem = \Mage::getModel('Model\Cart\Item')->fetchRow($query);
        

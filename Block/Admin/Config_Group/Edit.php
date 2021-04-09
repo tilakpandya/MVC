@@ -6,7 +6,8 @@ class Edit extends \Block\Core\Edit
     
     public function __construct() {
         parent::__construct();
-        $this->setTemplate('./View/Admin/config_group/edit.php');
+        $this->setTab(\Mage::getBlock('Block\Admin\Config_Group\Edit\Tabs'));
+        $this->setTabClass(\Mage::getBlock('Block\Admin\Config_Group\Edit\Tabs')); 
      }
 
      public function getId($id)
@@ -26,11 +27,6 @@ class Edit extends \Block\Core\Edit
         return 'Configuration Group Form';
     }
 
-    public function getConfigGroup()
-    {
-        return \Mage::getModel('Model\ConfigGroup')->load($this->getRequest()->getGet('id'));    
-        
-    }
 }
 
 ?>

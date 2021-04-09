@@ -30,14 +30,12 @@
                     <td><?php echo $group->name;?></td>
                     <td><?php echo $group->createdat;?></td>
                     <td>
-                    <a href='<?php echo $this->getUrl()->getUrl("form",NULL,['id'=> $group->groupId])?>'
+                        
+                        <a href='<?php echo $this->getUrl()->getUrl("form",NULL,['id'=> $group->groupId])?>'
                         class="btn btn-info btn-md"><span class="glyphicon glyphicon-pencil"></span></a>
 
                         <a href='<?php echo $this->getUrl()->getUrl("delete",NULL,['id'=> $group->groupId])?>'
                         class="btn btn-danger btn-md"><span class="glyphicon glyphicon-trash"></span> </a>
-
-                        <a href='<?php echo $this->getUrl()->getUrl("config",NULL,['id'=> $group->groupId])?>'
-                        class="btn btn-danger btn-md">config</a>
 
                     <td>
                 </tr>

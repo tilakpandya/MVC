@@ -1,10 +1,8 @@
 <?php $configuration=$this->getConfiguration(); 
-    $id=$this->getRequest()->getGet('id');
-      /* echo "<pre>";
-      print_r($configuration);  */  
+    $id=$this->getRequest()->getGet('id'); 
 ?>
 <div class="container">
-    <h1 style="color:gray">Attribute Option Form</h1>
+    <h1 style="color:gray">Configuration Form</h1>
     <hr>
     <form action="<?php echo $this->getUrl()->getUrl('update'); ?>" method="POST">
         <div class="form-group contentHtml">

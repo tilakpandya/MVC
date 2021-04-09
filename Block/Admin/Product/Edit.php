@@ -7,7 +7,7 @@ class Edit extends \Block\Core\Edit
     public function __construct() {
        parent::__construct();
        $this->setTab(\Mage::getBlock('Block\Admin\Product\Edit\Tabs'));
-        $this->setTabClass(\Mage::getBlock('Block\Admin\Product\Edit\Tabs')); 
+       $this->setTabClass(\Mage::getBlock('Block\Admin\Product\Edit\Tabs')); 
     }
     
     public function getId($id)

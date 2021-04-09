@@ -1,6 +1,6 @@
 <?php
 namespace Block\Admin\Category;
-\Mage::getBlock('Block\Core\Edit');
+
 class Edit extends \Block\Core\Edit
 {
     protected $categoryOptions = null;

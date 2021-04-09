@@ -3,29 +3,7 @@ namespace Controller\Admin;
 
 class Order extends \Controller\Core\Admin
 {
-    public function addItemToCartAction()
-    {
-      try {   
-            $id = (int)$this->getRequest()->getGet('id');       
-            $cartItem = \Mage::getModel('Model\Cart\Item')->load($id);
-            if (!$cartItem) {
-                throw new \Exception("cart Item is not Available");
-            }
-            $order = $this->getOrder();
-
-            if ($order->addItem($cartItem,1,true)) {
-                $this->getMessage()->setSuccess('Ordered Successfully');
-            }else {
-                $this->getMessage()->setFailure('Ordered Unsuccessfully');
-
-            } 
-                 
-        } catch (\Exception $th) {
-          echo $th->getMessage();
-        }
-
-        $this->redirect('index');
-    }
+    
 
     public function indexAction(Type $var = null)
     {
@@ -61,27 +39,6 @@ class Order extends \Controller\Core\Admin
         return $cart;
     }
 
-    public function getOrder($customerId=NULL)
-    {
-        $session = \Mage::getModel('Model\Admin\Session');
-        if ($customerId) {
-            $session->customerId = $customerId;
-        }
-
-        $order = \Mage::getModel('Model\Order');
-        $query = "SELECT * FROM `order` WHERE `customerId` = '{$session->customerId}'";
-        $order = $order->fetchRow($query);
-        
-        if($order) {
-          return $order;
-        }
-        
-        $order = \Mage::getModel('Model\Order');
-        $order->customerId = $session->customerId;
-        $order->createdat = date('Y-m-d H:i:s');
-        $order->save();
-        return $order;
-    }
     
     public function orderAction()
     {
@@ -105,12 +62,13 @@ class Order extends \Controller\Core\Admin
 
     protected function setOrder(\Model\Order $order,$cartId)
     {
-       $cartQuery = "SELECT *,`shipping`.`name` as `shippingName`, 
+        $cartQuery = "SELECT *,`shipping`.`name` as `shippingName`, 
         `payment`.`name` as `paymentName`,`shipping`.`code` as `shippingCode`  FROM `cart` 
         JOIN `Customer` ON `cart`.`customerId` = `customer`.`id` 
         JOIN `payment` ON `cart`.`paymentMethodId` = `payment`.`id` 
         JOIN `shipping` ON `cart`.`shippingMethodId` = `shipping`.`id` 
         WHERE `cartId` = '{$cartId}'";
+
         $cart = \Mage::getModel('Model\Cart')->fetchRow($cartQuery);
     
         $order->customerId = $cart->customerId;
@@ -160,10 +118,10 @@ class Order extends \Controller\Core\Admin
 
     protected function setOrderItem($cartId)
     {
-        $query = "SELECT * FROM `cart_item` 
+        $query = "SELECT *,`cart_item`.`quantity` as `cartQuantity` FROM `cart_item` 
         JOIN `product` ON `cart_item`.`productId`=`product`.`id` 
         WHERE `cartId` = '{$cartId}'";
-
+        
         $cartItems = \Mage::getModel('Model\Cart\Item')->fetchAll($query);
 
         $query = "SELECT `orderId` FROM `order` 
@@ -178,7 +136,7 @@ class Order extends \Controller\Core\Admin
             $orderItem->productName = $cartItem->name;
             $orderItem->basePrice = $cartItem->basePrice;
             $orderItem->price = $cartItem->price;
-            $orderItem->quantity = $cartItem->quantity;
+            $orderItem->quantity = $cartItem->cartQuantity;
             $orderItem->discount = $cartItem->discount;
             $orderItem->createdat = date('Y-m-d H:i:s');
             

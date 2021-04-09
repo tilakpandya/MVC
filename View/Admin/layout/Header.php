@@ -64,6 +64,7 @@
               <!-- / header top left -->
               <div class="aa-header-top-right">
                 <ul class="aa-head-top-nav-right">
+                  <li><a href="<?php echo $this->getUrl()->getUrl('grid','Admin_Config',['id'=>null],true)?>">Configuration</a></li>
                   <li><a href="account.html">My Account</a></li>
                   <li><a href="" data-toggle="modal" data-target="#login-modal">Login</a></li>
                 </ul>

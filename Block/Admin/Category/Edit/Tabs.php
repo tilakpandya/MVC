@@ -1,6 +1,5 @@
 <?php
 namespace Block\Admin\Category\Edit;
-\Mage::getBlock('Block\Core\Edit\Tabs');
 
 class Tabs extends \Block\Core\Edit\Tabs
 {

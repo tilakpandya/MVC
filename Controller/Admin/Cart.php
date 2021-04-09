@@ -8,15 +8,17 @@ class Cart extends \Controller\Core\Admin
       try {   
             $id = (int)$this->getRequest()->getGet('id');       
             $product = \Mage::getModel('Model\Product')->load($id);
+            
             if (!$product) {
                 throw new \Exception("Product is not Available");
             }
+
             $cart = $this->getCart();
 
             if ($cart->addItem($product,1,true)) {
                 $this->getMessage()->setSuccess('Item added to cart Successfully');
             }else {
-               
+                $this->getMessage()->setFailure('Item added to cart Unsuccessfully');
             } 
                  
         } catch (\Exception $th) {
@@ -41,10 +43,11 @@ class Cart extends \Controller\Core\Admin
     protected function getCart($customerId=NULL)
     {
         $session = \Mage::getModel('Model\Admin\Session');
-        
+
         if ($customerId) {
+            
             $session->customerId = $customerId;
-        }
+        } 
         //$sessionId = \Mage::getModel('Model\Admin\Session')->getId();
         $cart = \Mage::getModel('Model\Cart');
         $query = "SELECT * FROM `cart` WHERE `customerId` = '{$session->customerId}'";
@@ -53,7 +56,7 @@ class Cart extends \Controller\Core\Admin
         if($cart) {
           return $cart;
         }
-
+        
         $cart = \Mage::getModel('Model\Cart');
         $cart->customerId = $session->customerId;
         $cart->createdat = date('Y-m-d H:i:s');
@@ -115,6 +118,9 @@ class Cart extends \Controller\Core\Admin
     public function selectCustomerAction()
     {
         $customerId = $this->getRequest()->getPost('customer');
+        if ($customerId == 0) {
+            $this->getMessage()->setFailure('Please Select Customer');
+        }
         $this->getCart($customerId);
 
         $this->redirect('index','Admin_Cart',null,true);
@@ -175,7 +181,7 @@ class Cart extends \Controller\Core\Admin
                         
                         $this->getMessage()->setSuccess('Record Set Successfully');
                     }else{
-                        $this->getMessage()->setFailure('Unable To Delete Record');
+                        $this->getMessage()->setFailure('Unable To Set Record');
                     }   
                    
                    
@@ -212,7 +218,7 @@ class Cart extends \Controller\Core\Admin
                    
                    
                      if ($cartShippingAddress->save()) {
-                        $this->getMessage()->setSuccess('Record Deleted Successfully');
+                        $this->getMessage()->setSuccess('Record Set Successfully');
                     }else{
                         $this->getMessage()->setFailure('Unable To Delete Record');
                     }

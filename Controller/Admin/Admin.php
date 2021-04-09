@@ -1,7 +1,5 @@
 <?php
 namespace Controller\Admin;
-\Mage::loadByClass("Controller\core\Admin");
-
 
 class Admin extends \Controller\Core\Admin
 {

@@ -26,13 +26,14 @@ class Config extends \Controller\Core\Admin
     {
         try {
             $layout = $this->getLayout();
+            $config = \Mage::getModel('Model\Config');
             $edit = \Mage::getBlock('Block\Admin\Config_Group\Edit');
-            $tabs = \Mage::getBlock('Block\Admin\Config_Group\Edit\Tabs');
+            //$tabs = \Mage::getBlock('Block\Admin\Config_Group\Edit\Tabs');
 
             $content = $layout->getChild('content');
-            $content->addChild($tabs,'tabs');
+            //$content->addChild($tabs,'tabs');
             $content->addChild($edit,'edit');
-
+            $edit->setTableRow($config);
             echo $layout->toHtml();  
        
         } catch (Exception $e) {
@@ -44,11 +45,13 @@ class Config extends \Controller\Core\Admin
     {
         try {
             $layout = $this->getLayout();
+            $config = \Mage::getModel('Model\ConfigGroup');
             $edit = \Mage::getBlock('Block\Admin\Config_Group\Edit\Tabs\Configuration');
             //$tabs = \Mage::getBlock('Block\Admin\Config_Group\Edit\Tabs');
 
             $content = $layout->getChild('content');
             $content->addChild($edit,'edit');
+            $edit->setTableRow($config);
             //$content->addChild($tabs,'tabs');
 
             echo $layout->toHtml();  
@@ -70,8 +73,7 @@ class Config extends \Controller\Core\Admin
             WHERE `groupId` = '{$id}'
             AND `configId` = '{$configId}'";
             
-            $attribute = \Mage::getModel('Model\Config');
-            $attribute->fetchRow($query);
+            $attribute = \Mage::getModel('Model\Config')->fetchRow($query);
             $attribute->title= $value['title'];
             $attribute->code= $value['code'];
             $attribute->value= $value['value'];
@@ -83,7 +85,6 @@ class Config extends \Controller\Core\Admin
             }
         }
         
-       print_r($groupData['New']);
         if (array_key_exists('New', $groupData)) {
             $newOptions = $this->getRequest()->getPost('new');
             $title = $groupData['New']['Title'];
@@ -102,9 +103,7 @@ class Config extends \Controller\Core\Admin
                 $config->code = $column['code'];
                 $config->value = $column['value'];
                 $config->groupId = $column['groupId'];
-
-               
-                
+              
                 if($config->save()){
                     $this->getMessage()->setSuccess('Record Updated Successfully');
                 }else{
@@ -128,12 +127,10 @@ class Config extends \Controller\Core\Admin
                  
             }else {
                 
-                $group->createdat = date('Y-m-d H:i:s');
-                
+                $group->createdat = date('Y-m-d H:i:s');   
             }
 
             $groupData = $this->getRequest()->getPost('group');
-            
             $group->setData($groupData);
             
                 if($group->save()){

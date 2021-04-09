@@ -1,6 +1,5 @@
 <?php
 namespace Controller\Admin;
-\Mage::loadByClass("Controller\Core\Admin");
 
 class Payment extends \Controller\Core\Admin
 {

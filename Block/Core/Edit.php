@@ -41,9 +41,9 @@ class Edit extends \Block\Core\Template
     public function setTab($tab=null)
     {
         if (!$tab) {
-            $tab = \Mage::getBlock('Block\Admin\Core\Edit\Tabs');
+            $tab = \Mage::getBlock('Block\Admin\Product\Edit\Tabs');
         }   
-        $tab->setTableRow($this->getTableRow());
+       
         $this->tab = $tab;
         return $this;
     }
@@ -66,7 +66,7 @@ class Edit extends \Block\Core\Template
 
     public function setTableRow(\Model\Core\Table $tableRow)
     {
-        $this->tableRow = $tableRow;
+         $this->tableRow = $tableRow;
         return $this;
     }
 
@@ -83,6 +83,7 @@ class Edit extends \Block\Core\Template
     public function setTabClass($tabClass)
     {
         $this->tabClass = $tabClass;
+
         return $this;
     }
 }

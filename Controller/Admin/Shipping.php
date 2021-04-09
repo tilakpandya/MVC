@@ -3,9 +3,7 @@ namespace Controller\Admin;
 
 class Shipping extends \Controller\Core\Admin
 {
-    public function __construct(){     
-        parent::__construct(); 
-    }
+    
     public function gridAction()    
     {   
         try {  
